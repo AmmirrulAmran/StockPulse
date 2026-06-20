@@ -1,0 +1,145 @@
+## Development Standards
+
+This project uses several tools to maintain code quality and consistency across the codebase.
+
+### ESLint
+
+**Purpose:** Static code analysis and error detection.
+
+* Finds common JavaScript/TypeScript mistakes.
+* Enforces coding best practices.
+* Helps prevent bugs before runtime.
+
+Example:
+
+* Warns about unused variables.
+* Encourages `===` over `==`.
+
+---
+
+### Prettier
+
+**Purpose:** Automatic code formatting.
+
+* Ensures consistent code style across the team.
+* Removes debates about formatting.
+* Formats code automatically before commits.
+
+Example:
+
+* Fixes indentation.
+* Adds/removes spaces and semicolons according to project rules.
+
+---
+
+### Husky
+
+**Purpose:** Git hook management.
+
+* Runs automated checks before Git actions.
+* Prevents low-quality code from being committed.
+
+Current hooks:
+
+* `pre-commit` → Runs `lint-staged`.
+* `commit-msg` → Runs `commitlint`.
+
+---
+
+### lint-staged
+
+**Purpose:** Run checks only on staged files.
+
+* Improves performance by avoiding checks on the entire codebase.
+* Automatically formats changed files before commit.
+
+Current configuration:
+
+* Runs Prettier on staged `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.css`, and `.md` files.
+
+---
+
+### Commitlint
+
+**Purpose:** Enforce conventional commit messages.
+
+Benefits:
+
+* Clean Git history.
+* Easier changelog generation.
+* Better collaboration in teams.
+
+Examples:
+
+✅ Valid:
+
+```text
+feat: add authentication
+fix: resolve login bug
+docs: update README
+chore: configure eslint
+```
+
+❌ Invalid:
+
+```text
+updated files
+fixed stuff
+test commit
+```
+
+---
+
+### .gitignore
+
+**Purpose:** Prevent unnecessary or sensitive files from being tracked by Git.
+
+Ignored files include:
+
+* `node_modules/`
+* `dist/`
+* `build/`
+* `.env`
+
+Reason:
+
+* Reduces repository size.
+* Prevents accidental exposure of secrets.
+* Avoids committing generated files.
+
+---
+
+### .prettierignore
+
+**Purpose:** Prevent Prettier from formatting generated files.
+
+Ignored files include:
+
+* `node_modules/`
+* `dist/`
+* `build/`
+
+Reason:
+
+* Improves formatting speed.
+* Avoids modifying generated output.
+
+---
+
+## Commit Workflow
+
+```text
+git commit
+    ↓
+Husky
+    ↓
+lint-staged
+    ↓
+Prettier formats staged files
+    ↓
+Commitlint validates commit message
+    ↓
+Commit succeeds or fails
+```
+
+This workflow ensures consistent formatting, clean commit history, and higher code quality throughout the project.
