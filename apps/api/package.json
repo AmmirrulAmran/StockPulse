@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
-
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +13,8 @@
   "dependencies": {
     "express": "^5.2.1",
     "knex": "^3.2.10",
-    "pg": "^8.22.0"
+    "pg": "^8.22.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.5.0",

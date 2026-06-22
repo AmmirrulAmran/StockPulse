@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import supplierRoutes from "./routes/supplier.routes";
+import productRoutes from "./routes/product.routes";
+
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/v1/suppliers", supplierRoutes);
+app.use("/api/v1/products", productRoutes);
 
 // Health Check
 app.get("/health", (req, res) => {
